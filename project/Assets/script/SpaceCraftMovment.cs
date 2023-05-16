@@ -8,13 +8,14 @@ public class SpaceCraftMovment : MonoBehaviour
 
     public float speed;
     public float acceleration;
+    public float currentSpeed;
 
     // private variables
-    private float maxSpeed = 200f;
-    private float turnSpeed = 20;
+    private float maxSpeed = 400f;
+    private float turnSpeed = 30;
     private Vector3 moveDirection;
-    private float currentSpeed;
-
+    
+ 
     // particle system size
     private Vector3 maxMainEngineSize = new Vector3(2f, 2f, 2f);
     private Vector3 maxSideEngineSize = new Vector3(1f, 1f, 1f);
@@ -34,7 +35,6 @@ public class SpaceCraftMovment : MonoBehaviour
     private LayerMask layerMask;
     ParticleSystem [] particleSystems;  // reference to particle system
 
-    
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -42,33 +42,39 @@ public class SpaceCraftMovment : MonoBehaviour
         particleSystems = GetComponentsInChildren<ParticleSystem>();
         startMainEngineSize = particleSystems[0].transform.localScale; // get the current size of main engine
         startSideEngineSize = particleSystems[1].transform.localScale; // get the current size of side engine
-        currentSpeed = speed;
-
-        
+        currentSpeed = speed;   
     }
 
     private void Update()
     {
-        Move();
         Turn();
         AccelertingParticleSystemManager();
+        Rotation();   
+    }
+
+    private void FixedUpdate() {
+        Move();
+        Dive(); 
     }
 
     private void Move() {
 
         Debug.Log("Move is called");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveVertical =  Input.GetAxis("Vertical");
         // make w and s key to move forward and backward
-        moveDirection = transform.forward * moveVertical;
        
-
         // move the space craft
-        if ( Input.GetKey(KeyCode.W) )
+        if ( Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.LeftShift) )
         {
-            rigidBody.MovePosition(transform.position + moveDirection * speed * Time.deltaTime);
-
+            if(currentSpeed > speed){
+                
+                currentSpeed -=acceleration;
+            }
+            else{
+                currentSpeed = speed; 
+            }
         }
-        if ( Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) ) {
+        else if ( Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W) ) {
 
             if(currentSpeed < maxSpeed){
 
@@ -77,36 +83,68 @@ public class SpaceCraftMovment : MonoBehaviour
             }else{
                 currentSpeed = maxSpeed;
             }
-
-            rigidBody.MovePosition(transform.position + moveDirection * currentSpeed * Time.deltaTime);
-
         }
-
+        
+        if (moveVertical >= 0) {
+             moveDirection = transform.forward * moveVertical;
+             rigidBody.MovePosition(transform.position + moveDirection * currentSpeed * Time.deltaTime);
+        }
+        
         // active gravity if space key is pressed and move upper 
         if ( Input.GetKey(KeyCode.Space) )
-        {  
-            rigidBody.AddForce(Vector3.up * 1000f * Time.deltaTime);
-
+        { 
+            float launchPower = turnSpeed;
+            if ( Input.GetKey(KeyCode.LeftShift)) {
+                launchPower += acceleration;
+            } else {
+               // rigidBody.AddForce( );
+                if ( launchPower > turnSpeed ) {
+                    launchPower -= acceleration;
+                } else {
+                    launchPower = turnSpeed;
+                }
+            } 
+            rigidBody.AddRelativeForce(new Vector3(0, launchPower, 0));
         }
 
     }
 
     private void Turn() {
-
         float inputHorizontal = Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime;
         Quaternion turnRotation = Quaternion.Euler(0f, inputHorizontal, 0f);
         rigidBody.MoveRotation(rigidBody.rotation * turnRotation);
-
     }
 
+    
+    // rotate using e and q key
+    private void Rotation() {
+        if ( Input.GetKey(KeyCode.Q) )
+        {
+            transform.localRotation *= Quaternion.Euler(0, 0, 0.2f);
+        }
+        if(Input.GetKey(KeyCode.E)){
+             
+             transform.localRotation *= Quaternion.Euler(0, 0, -0.2f);
+        }
+    }
+
+     // rotate using e and q key
+    private void Dive() {
+        if ( (Input.GetKey(KeyCode.Mouse0) ))
+        {
+            transform.localRotation *= Quaternion.Euler(0.2f, 0, 0);
+        }
+        if( (Input.GetKey(KeyCode.Mouse1) )){
+             transform.localRotation *= Quaternion.Euler(-0.2f, 0, 0);
+        }
+    }
+    
 
     private void AccelertingParticleSystemManager() {
-
 
         isAccelerating = Input.GetKey(KeyCode.LeftShift);
         isForward = Input.GetKey(KeyCode.W);
         isUp = Input.GetKey(KeyCode.Space);
-
 
         if( (isForward && isAccelerating && !isUp)){
 
@@ -177,7 +215,6 @@ public class SpaceCraftMovment : MonoBehaviour
             else{
                 particleSystems[0].transform.localScale = startMainEngineSize;
             }
-
             // decrease the size of side engine
             if (particleSystems[1].transform.localScale.x > startSideEngineSize.x){
                 particleSystems[1].transform.localScale *= decreaseRate;
@@ -189,6 +226,4 @@ public class SpaceCraftMovment : MonoBehaviour
             }
         }  
     }
-    
-
 }
