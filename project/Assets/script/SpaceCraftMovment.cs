@@ -11,7 +11,7 @@ public class SpaceCraftMovment : MonoBehaviour
     public float currentSpeed;
 
     // private variables
-    private float maxSpeed = 200f;
+    private float maxSpeed = 200f; 
     private float turnSpeed = 30;
     private Vector3 moveDirection;
     
