@@ -128,3 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionParticlesPrefab: {fileID: 5666976442275908557, guid: 4d8f019c66271464390b4fa56846ca04, type: 3}
+  rockPiecesPrefab: {fileID: 8246424334461418160, guid: f3cc5bb49e11b3f4fba291bd4115ff2b, type: 3}

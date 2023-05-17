@@ -24,6 +24,5 @@ public class SpawnBullet : MonoBehaviour
         GameObject bullet =  Instantiate(bulletPrefab, transform.position, transform.rotation);
         bullet.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
         Destroy(bullet, 5f);
-
     }
 }

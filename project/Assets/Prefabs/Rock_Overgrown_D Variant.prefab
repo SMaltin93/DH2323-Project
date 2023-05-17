@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4af0b6d75b1de40b12ed444c44021c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rockSpeed: 10
-  anglePerSecond: 40
+  rockSpeed: 2
+  anglePerSecond: 20
   radiusSpeed: 10
   spawnPoint: {fileID: 2258885390875101338, guid: acc7226101e46444ca29b52ac905374b, type: 3}
