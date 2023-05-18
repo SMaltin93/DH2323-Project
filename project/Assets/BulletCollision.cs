@@ -20,7 +20,8 @@ public class BulletCollision : MonoBehaviour
             var rockPiecesRigidBodies = rockPieces.GetComponentsInChildren<Rigidbody>();
             foreach (var rockPiecesRigidBody in rockPiecesRigidBodies)
             {
-                rockPiecesRigidBody.AddExplosionForce(1000f, collision.gameObject.transform.position, 100f);
+                // add explosion force to the rock pieces that means they will fly away from the explosion
+                rockPiecesRigidBody.AddExplosionForce(1000f, collision.gameObject.transform.position, 100f); 
             }
             Destroy(rockPieces, 5f);
         }

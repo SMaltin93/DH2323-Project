@@ -114,12 +114,13 @@ public class SpaceCraftMovment : MonoBehaviour
     }
 
     private void Turn() {
-        float inputHorizontal = Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime;
-        Quaternion turnRotation = Quaternion.Euler(0f, inputHorizontal, 0f);
-        rigidBody.MoveRotation(rigidBody.rotation * turnRotation);
+        // float inputHorizontal = Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime;
+        // Quaternion turnRotation = Quaternion.Euler(0f, inputHorizontal, 0f);
+        // rigidBody.MoveRotation(rigidBody.rotation * turnRotation);
 
-       
-        
+        float inputHorizontal = Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime * mouseSensitivity ;
+        Quaternion turnRotationZ = Quaternion.Euler(0f, inputHorizontal, 0f);
+        rigidBody.MoveRotation(rigidBody.rotation * turnRotationZ);
     }
 
     
