@@ -25,9 +25,14 @@ public class BulletCollision : MonoBehaviour
             Destroy(rockPieces, 5f);
         }
         else{
-            GameObject explosion = (GameObject)Instantiate(explosionParticlesPrefab, transform.position, explosionParticlesPrefab.transform.rotation);
-            Destroy(explosion, explosion.GetComponent<ParticleSystem>().main.startLifetimeMultiplier);
-            Destroy(gameObject);
+            // dont collide with the aircraft
+            if(collision.transform.name !="Aircraft"){ 
+             GameObject explosion = (GameObject)Instantiate(explosionParticlesPrefab, transform.position, explosionParticlesPrefab.transform.rotation);
+             Destroy(explosion, explosion.GetComponent<ParticleSystem>().main.startLifetimeMultiplier);
+             Destroy(gameObject);
+            }
+            
+           
         }
     }
 }

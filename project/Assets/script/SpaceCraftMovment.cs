@@ -9,9 +9,12 @@ public class SpaceCraftMovment : MonoBehaviour
     public float speed;
     public float acceleration;
     public float currentSpeed;
+    public float maxSpeed;  
+
+
+    public float mouseSensitivity = 10f;
 
     // private variables
-    private float maxSpeed = 200f; 
     private float turnSpeed = 30;
     private Vector3 moveDirection;
     
@@ -43,6 +46,7 @@ public class SpaceCraftMovment : MonoBehaviour
         startMainEngineSize = particleSystems[0].transform.localScale; // get the current size of main engine
         startSideEngineSize = particleSystems[1].transform.localScale; // get the current size of side engine
         currentSpeed = speed;   
+        Cursor.lockState = CursorLockMode.Locked; 
     }
 
     private void Update()
@@ -113,6 +117,9 @@ public class SpaceCraftMovment : MonoBehaviour
         float inputHorizontal = Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime;
         Quaternion turnRotation = Quaternion.Euler(0f, inputHorizontal, 0f);
         rigidBody.MoveRotation(rigidBody.rotation * turnRotation);
+
+       
+        
     }
 
     
@@ -130,13 +137,21 @@ public class SpaceCraftMovment : MonoBehaviour
 
      // rotate using e and q key
     private void Dive() {
-        if ( (Input.GetKey(KeyCode.Mouse0) ))
-        {
-            transform.localRotation *= Quaternion.Euler(0.2f, 0, 0);
-        }
-        if( (Input.GetKey(KeyCode.Mouse1) )){
-             transform.localRotation *= Quaternion.Euler(-0.2f, 0, 0);
-        }
+        // if ( (Input.GetKey(KeyCode.Mouse0) ))
+        // {
+        //     transform.localRotation *= Quaternion.Euler(0.2f, 0, 0);
+        // }
+        // if( (Input.GetKey(KeyCode.Mouse1) )){
+        //      transform.localRotation *= Quaternion.Euler(-0.2f, 0, 0);
+        // }
+
+         // rotate z axis using the mouse
+        // lock the mouse cursor
+        
+        float inputVertical = Input.GetAxis("Mouse Y") * turnSpeed * Time.deltaTime * mouseSensitivity * -1;
+        Quaternion turnRotationZ = Quaternion.Euler(inputVertical, 0f, 0f);
+        rigidBody.MoveRotation(rigidBody.rotation * turnRotationZ);
+
     }
     
 
