@@ -17,6 +17,7 @@ public class SpawnBullet : MonoBehaviour
     {
         if ( Input.GetKeyDown(KeyCode.F) ) {
             Fire();
+             Score.amountOfBullets += 1f;
         }
         
     }
@@ -24,6 +25,7 @@ public class SpawnBullet : MonoBehaviour
     private void Fire() {
 
         // get the spaceShip cuurent speed
+        
         GameObject bullet =  Instantiate(bulletPrefab, transform.position, transform.rotation);
         // bulletSpeed = bulletspeed + the parent speed
         bullet.GetComponent<Rigidbody>().velocity = transform.forward * (bulletSpeed);

@@ -130,6 +130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionParticlesPrefab: {fileID: 5666976442275908557, guid: 4d8f019c66271464390b4fa56846ca04, type: 3}
   rockPiecesPrefab: {fileID: 8246424334461418160, guid: f3cc5bb49e11b3f4fba291bd4115ff2b, type: 3}
+  scoreText: {fileID: 2194573531820032592, guid: e28cb55eadde2f24aaabb419999990f1, type: 3}
+  score: 0
 --- !u!1001 &6706331339175307828
 PrefabInstance:
   m_ObjectHideFlags: 0

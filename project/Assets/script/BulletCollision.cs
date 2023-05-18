@@ -6,12 +6,15 @@ public class BulletCollision : MonoBehaviour
 {
     public GameObject explosionParticlesPrefab;
     public GameObject rockPiecesPrefab;
+
+
     
     private void OnCollisionEnter(Collision collision)
     {
-  
         if(collision.transform.name =="Rock_Overgrown_D Variant(Clone)"){
-
+        
+            Score.score += 1f;
+            // increase the score
             GameObject explosion = (GameObject)Instantiate(explosionParticlesPrefab, transform.position, explosionParticlesPrefab.transform.rotation);
             Destroy(explosion, explosion.GetComponent<ParticleSystem>().main.startLifetimeMultiplier);
             Destroy(gameObject);
