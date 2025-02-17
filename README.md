@@ -1,14 +1,15 @@
 # DH2323-Project Planet Protector
+![main picture](pictures/Newparticlesystem.png)
 
-###
-Authors:  
+### Authors  
 Sam Maltin & Harald Shiva Olin
 
 ## Overview 
-Our main goal with this game was to combine flying, shoo-
-ting rocks and simulating a hurricane. In the game, you find yourself in an
+Our main goal with this game was to combine flying, shooting rocks and simulating a hurricane. In the game, you find yourself in an
 environment where there is a hurricane with rocks spiraling around it. Your job is to
 break up these rocks before they crash into your home planet.
+
+![main picture](pictures/UI.png)
 
 ## Background and Description 
 we have always been inspired by the classic games we grew up with, like Asteroids.
@@ -21,8 +22,8 @@ player’s task is to navigate through this environment and destroy the rocks be
 they collide with the home planet. 
 
 ## Development Process and Reflections
-The development process was initiated with a brainstorming session for game ide-
-as.Once the concept of Planet Protector was decided upon, we embarked on creating
+The development process was initiated with a brainstorming session for game ideas.
+Once the concept of Planet Protector was decided upon, we embarked on creating
 the environment, game mechanics, and interactivity. Development was carried out
 using Unity, with scripting in C# to control game mechanics and interaction.
 We faced several challenges, including getting the spacecraft controls to feel intui-
@@ -49,6 +50,8 @@ flames.
 Particle systems in Unity were used to simulate the hurricane, leaves, and spacecraft
 engine flames. The hurricane’s particle system doesn’t interact with the game objects
 but adds to the immersive environment.
+
+![main picture](pictures/tornadoRotation.PNG)
 
 ## Future improvements
 ### A easy one
@@ -80,10 +83,7 @@ Both party members took turn switching the roles of navigator and pilot. We used
 Vscode to be able to code on the same file at the same time. Even though we could
 have made things more efficiently by working in parallell we decided that it would be
 better for us to do everything in the project together so we both could learn from it.
-We even used a github to push the project so we both could work from home. This
-was especially efficient when we switched roles for navigator and pilot since it allowed
-us both to run unity from home. We could also benefit from githubs branching system
-if we worked in parallell but since we decided to work together we didn’t use that
+We could also benefit from githubs branching system if we worked in parallell but since we decided to work together we didn’t use that
 feature.
 
 
