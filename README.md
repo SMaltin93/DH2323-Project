@@ -38,6 +38,8 @@ The design involves planing the game’s environment, the hurricane, the spacecr
 and the rocks. The hurricane and the rock were added to make a realistic touch to
 the game.
 
+![main picture](pictures/Gameworld.PNG)
+
 ### Coding
 We used Unity game engine, making use of its in-built physics for collision detec-
 tion and movement.We used C# for scripting the game logic, wich involve capturing
@@ -45,6 +47,7 @@ user inputs, controlling the spacecraft, shooting mechanism, movement of the spi
 raling rocks, and managing the hurricane. The script also handles the creation and
 management of the particle system that visually represented the spacecraft engine
 flames.
+![main picture](pictures/mainEngine.png)
 
 ### Particle system
 Particle systems in Unity were used to simulate the hurricane, leaves, and spacecraft
@@ -86,5 +89,6 @@ better for us to do everything in the project together so we both could learn fr
 We could also benefit from githubs branching system if we worked in parallell but since we decided to work together we didn’t use that
 feature.
 
+![main picture](pictures/Screenshot_2023-05-19_143737.png)
 
 
